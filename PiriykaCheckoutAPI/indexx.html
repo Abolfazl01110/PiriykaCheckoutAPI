@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Entry Form</title>
+</head>
+<body>
+
+<!-- Form for collecting data -->
+<form id="dataForm">
+    <!-- Individual input fields for various data -->
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" required><br>
+
+    <label for="products">Products:</label>
+    <input type="text" id="products" name="products" required><br>
+
+    <label for="numberOfProducts">Number of Products:</label>
+    <input type="number" id="numberOfProducts" name="numberOfProducts" required><br>
+
+    <label for="price">Price:</label>
+    <input type="text" id="price" name="price" required><br>
+
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required><br>
+
+    <label for="lastname">Lastname:</label>
+    <input type="text" id="lastname" name="lastname" required><br>
+
+    <label for="organization">Organization:</label>
+    <input type="text" id="organization" name="organization" required><br>
+
+    <label for="country">Country:</label>
+    <input type="text" id="country" name="country" required><br>
+
+    <label for="province">Province:</label>
+    <input type="text" id="province" name="province" required><br>
+
+    <label for="city">City:</label>
+    <input type="text" id="city" name="city" required><br>
+
+    <label for="address1">Address Line 1:</label>
+    <input type="text" id="address1" name="address1" required><br>
+
+    <label for="address2">Address Line 2:</label>
+    <input type="text" id="address2" name="address2"><br>
+
+    <label for="postalCode">Postal Code:</label>
+    <input type="text" id="postalCode" name="postalCode" required><br>
+
+    <label for="phoneNumber">Phone Number:</label>
+    <input type="text" id="phoneNumber" name="phoneNumber" required><br>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required><br>
+
+    <label for="nationalCode">National Code:</label>
+    <input type="text" id="nationalCode" name="nationalCode" required><br>
+
+    <label for="additionalNotes">Additional Notes:</label>
+    <textarea id="additionalNotes" name="additionalNotes"></textarea><br>
+
+    <!-- Button to trigger data submission -->
+    <button type="button" onclick="submitData()">Submit Data</button>
+</form>
+
+<!-- JavaScript code for handling form submission -->
+<script>
+    function submitData() {
+        // Create an object to store form data
+        var formData = {
+    username: document.getElementById('username').value,
+    products: document.getElementById('products').value,
+    numberOfProducts: document.getElementById('numberOfProducts').value,
+    price: document.getElementById('price').value,
+    name: document.getElementById('name').value,
+    lastname: document.getElementById('lastname').value,
+    organization: document.getElementById('organization').value,
+    country: document.getElementById('country').value,
+    province: document.getElementById('province').value,
+    city: document.getElementById('city').value,
+    address1: document.getElementById('address1').value,
+    address2: document.getElementById('address2').value,
+    postalCode: document.getElementById('postalCode').value,
+    phoneNumber: document.getElementById('phoneNumber').value,
+    email: document.getElementById('email').value,
+    nationalCode: document.getElementById('nationalCode').value,
+    additionalNotes: document.getElementById('additionalNotes').value
+};
+
+
+        // Use Fetch API to send a POST request to the server
+        fetch('save_data.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData),
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log("Data submitted successfully:", data);
+            // You can perform additional actions if needed
+        })
+        .catch(error => {
+            console.error("Error submitting data:", error);
+        });
+    }
+</script>
+
+
+</body>
+</html>
